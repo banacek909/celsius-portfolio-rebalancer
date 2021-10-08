@@ -33,7 +33,7 @@ export function GlobalStore({
     */
 
   // the backtest results data can be large so exclude from sessionStorage/localStorage
-  /*
+  
     const sessionState = produce(globalState, (draft: GlobalStateInterface) => {
       draft.backtest.results.portfolio = [];
       draft.backtest.results.coin = {};
@@ -48,7 +48,7 @@ export function GlobalStore({
       sessionStorage.removeItem("globalState");
     }
   }, [globalState]);
-*/
+
   return (
     <globalContext.Provider value={{ globalState, dispatch }}>
       {children}
