@@ -43,11 +43,11 @@ const RebalancerTabs = ({
           </div>
           <div style={{ position: "absolute", right: "0px" }}>
             <svg
-              height="16"
+              height="14"
               aria-hidden="true"
               viewBox="0 0 16 16"
               version="1.1"
-              width="16"
+              width="14"
               data-view-component="true"
               className="octicon octicon-mark-github v-align-middle"
             >
@@ -58,7 +58,7 @@ const RebalancerTabs = ({
             </svg>
             <a
               href="https://github.com/banacek909/celsius-portfolio-rebalancer"
-              style={{ margin: "0px 5px 0px 5px" }}
+              style={{ position: "relative", top: "-1px", left: "4px" }}
             >
               Source code
             </a>
