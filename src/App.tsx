@@ -1,25 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+//import React from "react";
+import "./App.css";
+
+import { Switch, Route } from "react-router-dom";
+
+import Rebalance from "./components/Rebalance";
+import Backtest from "./components/Backtest";
+import RiskAnalysis from "./components/RiskAnalysis";
+import RebalancerTabs from "./components/RebalancerTabs";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Switch>
+      <Route exact path="/">
+        <RebalancerTabs selectedIndex={0} />
+        <Rebalance type={"rebalance"} />
+      </Route>
+      <Route exact path="/backtest">
+        <RebalancerTabs selectedIndex={1} />
+        <Rebalance type={"backtest"} />
+        <Backtest />
+      </Route>
+      <Route exact path="/risk">
+        <RebalancerTabs selectedIndex={2} />
+        <RiskAnalysis />
+      </Route>
+    </Switch>
   );
 }
 
