@@ -26,8 +26,8 @@ export function GlobalStore({
     initializeState()
   );
 
-  /*useEffect(() => {
-   */ /*
+  useEffect(() => {
+    /*
      populate either sessionStorage or localStorage data from globalState based on persistenceType
      and purge sessionStorage or localStorage globalState key/value pair when either is selected
     */
