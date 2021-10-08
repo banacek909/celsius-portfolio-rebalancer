@@ -672,7 +672,7 @@ const Backtest = (): ReactElement => {
   return (
     <Container fluid style={{ padding: "0px 40px 40px 40px" }}>
       <Row>
-        <Col xs={12} style={{ marginTop: "20px" }}>
+        <Col xs={12} style={{ marginTop: "0px" }}>
           {renderSettings()}
         </Col>
       </Row>
