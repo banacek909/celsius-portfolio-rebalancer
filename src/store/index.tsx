@@ -6,7 +6,7 @@ import React, {
   //useReducer,
 } from "react";
 import { useImmerReducer } from "use-immer";
-//import produce from "immer";
+import produce from "immer";
 import ImmerReducer from "./reducer";
 import { ContextType, GlobalStateInterface, PortfolioCoin } from "./types";
 
