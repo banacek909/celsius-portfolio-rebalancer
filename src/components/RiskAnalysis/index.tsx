@@ -104,6 +104,7 @@ export default function DenseTable() {
   if (
     results[coin]?.from === from &&
     results[coin]?.to === to &&
+    results[coin]?.prices.length &&
     results[coin][period]
   ) {
     rows = results[coin][period];
