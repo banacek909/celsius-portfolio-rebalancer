@@ -232,6 +232,7 @@ export const getRiskAnalysisData = (
   if (period === "monthly") {
     prices.forEach((p) => {
       const date = new Date(p[0]);
+      console.log(period, ': date: ', date, 'date.getDate():' , date.getDate(), ' moment(date).date(): ', moment(date).date());
       if (date.getDate() === 1) {
         // first of the month
         let profit_pc =
@@ -254,6 +255,7 @@ export const getRiskAnalysisData = (
   } else if (period === "weekly") {
     prices.forEach((p) => {
       const date = new Date(p[0]);
+      console.log(period, ': date: ', date, 'date.getDate():' , date.getDate(), ' moment(date).day(): ', moment(date).day());
       if (moment(date).day() === 1) {
         // every Monday
         let profit_pc =
