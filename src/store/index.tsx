@@ -2,11 +2,11 @@ import React, {
   createContext,
   ReactElement,
   ReactNode,
-  //useEffect,
+  useEffect,
   //useReducer,
 } from "react";
 import { useImmerReducer } from "use-immer";
-//import produce from "immer";
+import produce from "immer";
 import ImmerReducer from "./reducer";
 import { ContextType, GlobalStateInterface, PortfolioCoin } from "./types";
 
@@ -26,29 +26,34 @@ export function GlobalStore({
     initializeState()
   );
 
-  /*useEffect(() => {
-   */ /*
+  useEffect(() => {
+    /*
      populate either sessionStorage or localStorage data from globalState based on persistenceType
      and purge sessionStorage or localStorage globalState key/value pair when either is selected
     */
 
-  // the backtest results data can be large so exclude from sessionStorage/localStorage
-  /*
-    const sessionState = produce(globalState, (draft: GlobalStateInterface) => {
-      draft.backtest.results.portfolio = [];
-      draft.backtest.results.coin = {};
-    });
+    if (globalState.session.save) {
+      // the backtest results data can be large so exclude from sessionStorage/localStorage
 
-    const getPersistenceType = globalState.persistenceType;
-    if (getPersistenceType === "sessionStorage") {
-      sessionStorage.setItem("globalState", JSON.stringify(sessionState));
-      localStorage.removeItem("globalState");
-    } else if (getPersistenceType === "localStorage") {
-      localStorage.setItem("globalState", JSON.stringify(sessionState));
-      sessionStorage.removeItem("globalState");
+      const sessionState = produce(
+        globalState,
+        (draft: GlobalStateInterface) => {
+          draft.backtest.results.portfolio = [];
+          draft.backtest.results.coin = {};
+        }
+      );
+
+      const getPersistenceType = globalState.session.persistenceType;
+      if (getPersistenceType === "sessionStorage") {
+        sessionStorage.setItem("globalState", JSON.stringify(sessionState));
+        localStorage.removeItem("globalState");
+      } else if (getPersistenceType === "localStorage") {
+        localStorage.setItem("globalState", JSON.stringify(sessionState));
+        sessionStorage.removeItem("globalState");
+      }
     }
   }, [globalState]);
-*/
+
   return (
     <globalContext.Provider value={{ globalState, dispatch }}>
       {children}
@@ -96,6 +101,11 @@ const portfolio: PortfolioCoin[] = [
 let from_date = moment().add(-12, "months").toDate();
 
 export const initialState: GlobalStateInterface = {
+  session: {
+    version: 1,
+    save: false,
+    persistenceType: "sessionStorage",
+  },
   portfolio,
   backtest: {
     from: from_date,
@@ -153,7 +163,6 @@ export const initialState: GlobalStateInterface = {
     results: {},
   },
   historicalPrices: {},
-  persistenceType: "sessionStorage",
 };
 
 /*************************************************************************************************/

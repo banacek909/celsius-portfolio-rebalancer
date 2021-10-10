@@ -174,6 +174,12 @@ const ImmerReducer = (draft: GlobalStateInterface, action: ActionType): any => {
         weekly: action.payload.results.weekly,
       };
       break;
+    case "SET_BACKTEST_PORTFOLIO":
+      draft.backtest.portfolio = draft.portfolio;
+      draft.portfolio.forEach((p: PortfolioCoin, i: number) => {
+        draft.backtest.portfolio[i].value = p.rebalance.percent * 10;
+      });
+      break;
     case "TOGGLE_BACKTEST_CHART_LEGEND":
       const p =
         action.payload.chart_type === "portfolio"
@@ -231,8 +237,19 @@ const ImmerReducer = (draft: GlobalStateInterface, action: ActionType): any => {
         }
       }
       break;
+    case "TOGGLE_SAVE_SESSION":
+      draft.session.save = !draft.session.save;
+      if (!draft.session.save) {
+        const getPersistenceType = draft.session.persistenceType;
+        if (getPersistenceType === "sessionStorage") {
+          sessionStorage.removeItem("globalState");
+        } else if (getPersistenceType === "localStorage") {
+          localStorage.removeItem("globalState");
+        }
+      }
+      break;
     case "SET_PERSISTENCE":
-      draft.persistenceType = action.payload;
+      draft.session.persistenceType = action.payload;
       break;
     case "PURGE_STATE":
       draft = initialState;

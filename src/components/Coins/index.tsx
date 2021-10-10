@@ -1,5 +1,7 @@
 import React, { ReactElement, useContext } from "react";
-import { InputGroup, ProgressBar } from "@blueprintjs/core";
+import { useHistory } from "react-router";
+
+import { Button, InputGroup, ProgressBar } from "@blueprintjs/core";
 
 import Table from "@mui/material/Table";
 //import TableBody from "@mui/material/TableBody";
@@ -27,6 +29,8 @@ import { MultiSelectCoin } from "../Select/MultiSelectCoin";
 const Coins = (prices: Prices, type: string): ReactElement => {
   const { globalState, dispatch } = useContext(globalContext);
 
+  const history = useHistory();
+
   const setAmountHandler = (e: React.BaseSyntheticEvent) => {
     const regex = /^[0-9\.]+$/;
     if (regex.test(e.target.defaultValue)) {
@@ -47,6 +51,13 @@ const Coins = (prices: Prices, type: string): ReactElement => {
         payload: { coin: coin, percent: parseFloat(e.target.defaultValue) },
       });
     }
+  };
+
+  const handleBacktestPortfolio = () => {
+    dispatch({
+      type: "SET_BACKTEST_PORTFOLIO",
+    });
+    history.push("/backtest");
   };
 
   const TableHeader = () => {
@@ -231,6 +242,11 @@ const Coins = (prices: Prices, type: string): ReactElement => {
   const font_size = 12;
   const tableCellStyle = { fontSize: `${font_size}px` };
 
+  const portfolio_grid_num: [number, number] =
+    allocated_amounts_targets && total_percent_allocated === 100
+      ? [11, 1]
+      : [12, 0];
+
   return (
     <Container fluid style={{ paddingLeft: "40px", paddingRight: "40px" }}>
       <Row style={{ marginBottom: "20px" }}>
@@ -244,8 +260,15 @@ const Coins = (prices: Prices, type: string): ReactElement => {
         >
           <div>{type === "backtest" ? "Backtest Portfolio" : "Portfolio"}</div>
         </Col>
-        <Col xs={12}>
+        <Col xs={portfolio_grid_num[0]}>
           <MultiSelectCoin />
+        </Col>
+        <Col xs={portfolio_grid_num[1]}>
+          {allocated_amounts_targets && total_percent_allocated === 100 && (
+            <Button onClick={handleBacktestPortfolio} small={true}>
+              {"Backtest"}
+            </Button>
+          )}
         </Col>
       </Row>
 

@@ -73,7 +73,14 @@ export type BacktestType = {
   chart: BackTestChartType;
 };
 
+export type Session = {
+  version: number;
+  save: boolean;
+  persistenceType: "sessionStorage";
+};
+
 export interface GlobalStateInterface {
+  session: Session;
   portfolio: PortfolioCoin[];
   backtest: BacktestType;
   riskAnalysis: RiskAnalysisType;
@@ -84,7 +91,6 @@ export interface GlobalStateInterface {
       prices: [number, number][];
     };
   };
-  persistenceType: string;
 }
 
 export type ActionType = {

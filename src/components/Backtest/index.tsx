@@ -672,7 +672,7 @@ const Backtest = (): ReactElement => {
   return (
     <Container fluid style={{ padding: "0px 40px 40px 40px" }}>
       <Row>
-        <Col xs={12} style={{ marginTop: "20px" }}>
+        <Col xs={12} style={{ marginTop: "0px" }}>
           {renderSettings()}
         </Col>
       </Row>
@@ -702,7 +702,7 @@ const Backtest = (): ReactElement => {
                   {coin}
                 </div>
               );
-              return <Tab id={i + 1} title={logo_text} />;
+              return <Tab key={i + 1} id={i + 1} title={logo_text} />;
             })}
           </Tabs>
         </Row>
@@ -762,7 +762,7 @@ const Backtest = (): ReactElement => {
                 {statsResults &&
                   statsResults.map((row, i) => {
                     return (
-                      <TableRow>
+                      <TableRow key={i}>
                         <TableCell style={tableCellStyle}>
                           <b>{row.label}</b>
                         </TableCell>
