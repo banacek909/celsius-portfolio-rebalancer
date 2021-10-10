@@ -101,18 +101,23 @@ export default function DenseTable() {
   let loading = true;
   const { coin, period, from, to, results } = globalState.riskAnalysis;
 
+  console.log(`Risk Analsys debug 1: [${coin}]: `, results[coin]);
   if (
     results[coin]?.from === from &&
     results[coin]?.to === to &&
+    results[coin]?.prices.length &&
     results[coin][period]
   ) {
+    console.log(`Risk Analsys debug 2: [${coin}]`);
     rows = results[coin][period];
     prices = results[coin].prices;
     chartData = getChartData(prices);
     loading = false;
   } else {
+    console.log(`Risk Analsys debug 3: [${coin}]`);
     fetchHistoricCoinPrices(coin, from, to)
       .then((coinPrices: [number, number][] | undefined) => {
+        console.log(`Risk Analsys debug 4: [${coin}], prices: `, prices);
         const results = {
           monthly: getRiskAnalysisData(prices, "monthly"),
           weekly: getRiskAnalysisData(prices, "weekly"),
