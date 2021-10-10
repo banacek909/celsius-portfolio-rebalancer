@@ -114,15 +114,15 @@ export default function DenseTable() {
   } else {
     fetchHistoricCoinPrices(coin, from, to)
       .then((coinPrices: [number, number][] | undefined) => {
+        prices = coinPrices;
+        if (prices) {
+          chartData = getChartData(prices);
+        }
         const results = {
           monthly: getRiskAnalysisData(prices, "monthly"),
           weekly: getRiskAnalysisData(prices, "weekly"),
         };
         rows = results[period];
-        prices = coinPrices;
-        if (prices) {
-          chartData = getChartData(prices);
-        }
         if (rows) {
           dispatch({
             type: "SET_RISK_ANALYSIS_RESULTS",
