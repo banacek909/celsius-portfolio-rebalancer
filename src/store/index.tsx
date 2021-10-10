@@ -69,7 +69,7 @@ const portfolio: PortfolioCoin[] = [
   {
     coin: "BTC",
     amount: 0.1,
-    value: 1000,
+    value: 300,
     rebalance: {
       threshold: 1,
       percent: 30,
@@ -79,7 +79,7 @@ const portfolio: PortfolioCoin[] = [
   {
     coin: "ETH",
     amount: 2,
-    value: 1000,
+    value: 200,
     rebalance: {
       threshold: 1,
       percent: 20,
@@ -89,7 +89,7 @@ const portfolio: PortfolioCoin[] = [
   {
     coin: "CEL",
     amount: 500,
-    value: 1000,
+    value: 500,
     rebalance: {
       threshold: 1,
       percent: 50,
