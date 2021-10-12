@@ -1,12 +1,17 @@
 # Celsius Portfolio Rebalancer
 
-This is an app made in order to aid in portfolio rebalancing of assets held in a Celsius Network wallet.\
-It does not rebalance your portfolio in your Celsius wallet but calculates the transfer of funds needed to achieve a target asset weighting.
-With the release of Celsius Swap, rebalancing your portfolio should be a lot easier to do in the Celsius app.
+This is an application made in order to aid in the portfolio rebalancing of assets held in a Celsius Network wallet.
 
-I added a risk analysis page and implemented a backtester to visualise and compare various rebalancing strategies: periodic, threshold percent and dollar cost averaging.
+Rebalancing is the process of realigning the weightings of a portfolio of assets. Rebalancing involves periodically buying or selling assets in a portfolio to maintain an original or desired level of asset allocation or risk.
 
-The risk analysis page calculates the Kelly Criterion as described and discussed in the following video on the Celsius Daily youTube channel:
+It currently does not connect to your Celsius wallet but calculates the transfer of funds needed to achieve a desired target asset weighting.
+With the release and rollout of Celsius Swap, this tool should help in rebalancing your portfolio within the Celsius app.
+
+The backtester uses historical market data to calculate how well a strategy would have performed in the past. It allows you to analyse and compare various rebalancing strategies: periodic, threshold percent and dollar cost averaging.
+
+The risk analysis page shows the past performance of a coin and calculates the Kelly Criterion percentage which can be used to determine an asset's risk and weighting in a portfolio.\
+The Kelly Criterion is a mathematical formula that helps investors calculate what percentage of their money they should allocate to each investment. 
+The calculation is based on the following video on the Celsius Daily youTube channel:
 
 Celsian Interview - Marc Mayor - Ex Wall Street Analyst - Celsius Portfolio Kelly Criterion - Ep 14\
 https://www.youtube.com/watch?v=ddK8kdtHENk&t=3557s
